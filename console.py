@@ -20,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
     Command line interpreter for HBNB project.
     """
     
-    prompt = '(hbnb) '
+    prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''
 
     def precmd(self, line):
         """
@@ -63,27 +63,26 @@ class HBNBCommand(cmd.Cmd):
 
         return line
 
+    def default(self, line):
+        if not line.strip():
+            return
+        else:
+            super().default(line)
+
+    def emptyline(self):
+        if sys.__stdin__.isatty():
+            pass
+        else:
+            return True
+
     def do_quit(self, command):
         """ Method to exit the HBNB console"""
         exit()
-
-    def help_quit(self):
-        """ Prints the help documentation for quit  """
-        print("Exits the program with formatting\n")
 
     def do_EOF(self, arg):
         """ Handles EOF to exit program """
         print()
         exit()
-
-    def help_EOF(self):
-        """ Prints the help documentation for EOF """
-        print("Exits the program without formatting\n")
-
-    def emptyline(self):
-        """ Overrides the emptyline method of CMD """
-        pass
-
 
     def do_create(self, classname):
         """
