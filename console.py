@@ -300,11 +300,4 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
 if __name__ == '__main__':
-    if not sys.stdin.isatty():
-        # Non-interactive mode
-        input_commands = sys.stdin.read().splitlines()
-        for command in input_commands:
-            HBNBCommand().onecmd(command)
-    else:
-        # Interactive mode
-        HBNBCommand().cmdloop()
+    HBNBCommand().cmdloop()
