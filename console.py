@@ -37,13 +37,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             return True
 
-    def default(self, line):
-        if not line.strip():
-            return
-        else:
-            super().default(line)
-
-
     def precmd(self, line):
         """
         Preprocesses command before executing.
