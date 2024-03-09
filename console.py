@@ -21,6 +21,28 @@ class HBNBCommand(cmd.Cmd):
     """
     
     prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''
+    
+    def do_quit(self, arg):
+        """Quit command to exit the program"""
+        return True
+
+    def do_EOF(self, line):
+        """Exit the program"""
+        print()
+        return True
+    
+    def emptyline(self):
+        if sys.__stdin__.isatty():
+            pass
+        else:
+            return True
+
+    def default(self, line):
+        if not line.strip():
+            return
+        else:
+            super().default(line)
+
 
     def precmd(self, line):
         """
@@ -277,27 +299,6 @@ class HBNBCommand(cmd.Cmd):
                 print(count)
             else:
                 print("** class doesn't exist **")
-
-    def default(self, line):
-        if not line.strip():
-            return
-        else:
-            super().default(line)
-
-    def emptyline(self):
-        if sys.__stdin__.isatty():
-            pass
-        else:
-            return True
-
-    def do_quit(self, arg):
-        """Quit command to exit the program"""
-        return True
-
-    def do_EOF(self, line):
-        """Exit the program"""
-        print()
-        return True
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
