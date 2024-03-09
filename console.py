@@ -21,18 +21,6 @@ class HBNBCommand(cmd.Cmd):
     """
     
     prompt = '(hbnb) '
-    
-    def cmdloop(self):
-        try:
-            return super().cmdloop()
-        except KeyboardInterrupt:
-            print("")
-
-    def preloop(self):
-        if not sys.stdin.isatty():
-            self.use_rawinput = False
-            self.stdout.write('(hbnb) ')
-            self.stdout.flush()
 
     def precmd(self, line):
         """
@@ -74,15 +62,6 @@ class HBNBCommand(cmd.Cmd):
                 return ''  
 
         return line
-
-    def postcmd(self, stop, line):
-        if not sys.stdin.isatty():
-            self.stdout.write('(hbnb) ')
-            self.stdout.flush()
-
-    def postloop(self):
-        if not sys.stdin.isatty():
-            self.stdout.write('\n')
 
     def do_quit(self, command):
         """ Method to exit the HBNB console"""
@@ -322,4 +301,11 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
 if __name__ == '__main__':
-    HBNBCommand().cmdloop()
+    if not sys.stdin.isatty():
+        # Non-interactive mode
+        input_commands = sys.stdin.read().splitlines()
+        for command in input_commands:
+            HBNBCommand().onecmd(command)
+    else:
+        # Interactive mode
+        HBNBCommand().cmdloop()
