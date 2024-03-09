@@ -14,6 +14,8 @@ from models.amenity import Amenity
 from models import storage
 import re
 
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -310,6 +312,3 @@ class HBNBCommand(cmd.Cmd):
                 print(count)
             else:
                 print("** class doesn't exist **")
-
-if __name__ == '__main__':
-    HBNBCommand().cmdloop()
