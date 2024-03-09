@@ -278,25 +278,14 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def emptyline(self):
-        """Do nothing when an empty line is entered."""
-        return False
+        pass
 
     def do_quit(self, arg):
-        '''
-            Quit command to exit the program.
-        '''
+        """Quit command to exit the program"""
         return True
     
     def do_EOF(self, line):
-        """
-        Handle the end-of-file (EOF) character.
-
-        Args:
-            line (str): The input line containing the EOF character.
-
-        Returns:
-            bool: True to exit the interpreter.
-        """
+        """Exit the program"""
         print()
         return True
 
