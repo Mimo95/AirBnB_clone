@@ -22,6 +22,11 @@ class HBNBCommand(cmd.Cmd):
     
     prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''
 
+    def preloop(self):
+        """Prints if isatty is false"""
+        if not sys.__stdin__.isatty():
+            print('(hbnb)')
+
     def precmd(self, line):
         """
         Preprocesses command before executing.
@@ -62,7 +67,13 @@ class HBNBCommand(cmd.Cmd):
                 return ''  
 
         return line
-    
+
+    def postcmd(self, stop, line):
+        """Prints if isatty is false"""
+        if not sys.__stdin__.isatty():
+            print('(hbnb) ', end='')
+        return stop
+
     def do_create(self, classname):
         """
         Creates a new instance of the specified class.
