@@ -3,6 +3,7 @@
 This script defines a HBNBCommand class .
 """
 import cmd
+import sys
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -19,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
     Command line interpreter for HBNB project.
     """
     
-    prompt = '(hbnb) '
+    prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''
 
     def precmd(self, line):
         """
@@ -290,7 +291,4 @@ class HBNBCommand(cmd.Cmd):
         return True
 
 if __name__ == '__main__':
-    '''
-        Entry point for the loop.
-    '''
     HBNBCommand().cmdloop()
