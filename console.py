@@ -63,27 +63,6 @@ class HBNBCommand(cmd.Cmd):
 
         return line
 
-    def default(self, line):
-        if not line.strip():
-            return
-        else:
-            super().default(line)
-
-    def emptyline(self):
-        if sys.__stdin__.isatty():
-            pass
-        else:
-            return True
-
-    def do_quit(self, command):
-        """ Method to exit the HBNB console"""
-        exit()
-
-    def do_EOF(self, arg):
-        """ Handles EOF to exit program """
-        print()
-        exit()
-
     def do_create(self, classname):
         """
         Creates a new instance of the specified class.
@@ -298,6 +277,27 @@ class HBNBCommand(cmd.Cmd):
                 print(count)
             else:
                 print("** class doesn't exist **")
+
+    def default(self, line):
+        if not line.strip():
+            return
+        else:
+            super().default(line)
+
+    def emptyline(self):
+        if sys.__stdin__.isatty():
+            pass
+        else:
+            return True
+
+    def do_quit(self, arg):
+        """Quit command to exit the program"""
+        return True
+
+    def do_EOF(self, line):
+        """Exit the program"""
+        print()
+        return True
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
