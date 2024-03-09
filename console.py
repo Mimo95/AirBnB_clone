@@ -19,7 +19,7 @@ class HBNBCommand(cmd.Cmd):
     Command line interpreter for HBNB project.
     """
     
-    prompt = "(hbnb) "
+    prompt = '(hbnb) '
 
     def precmd(self, line):
         """
@@ -288,7 +288,6 @@ class HBNBCommand(cmd.Cmd):
         """Exit the program"""
         print()
         return True
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
