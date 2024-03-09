@@ -21,11 +21,18 @@ class HBNBCommand(cmd.Cmd):
     """
     
     prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''
+    
+    def cmdloop(self):
+        try:
+            return super().cmdloop()
+        except KeyboardInterrupt:
+            print("")
 
     def preloop(self):
-        """Prints if isatty is false"""
-        if not sys.__stdin__.isatty():
-            print('(hbnb)')
+        if not sys.stdin.isatty():
+            self.use_rawinput = False
+            self.stdout.write('(hbnb) ')
+            self.stdout.flush()
 
     def precmd(self, line):
         """
@@ -69,10 +76,13 @@ class HBNBCommand(cmd.Cmd):
         return line
 
     def postcmd(self, stop, line):
-        """Prints if isatty is false"""
-        if not sys.__stdin__.isatty():
-            print('(hbnb) ', end='')
-        return stop
+        if not sys.stdin.isatty():
+            self.stdout.write('(hbnb) ')
+            self.stdout.flush()
+
+    def postloop(self):
+        if not sys.stdin.isatty():
+            self.stdout.write('\n')
 
     def do_quit(self, command):
         """ Method to exit the HBNB console"""
