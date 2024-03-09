@@ -20,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
     Command line interpreter for HBNB project.
     """
     
-    prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''
+    prompt = '(hbnb) '
     
     def cmdloop(self):
         try:
