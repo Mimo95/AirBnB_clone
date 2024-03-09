@@ -282,7 +282,9 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def do_quit(self, arg):
-        """Exit the interpreter."""
+        '''
+            Quit command to exit the program.
+        '''
         return True
     
     def do_EOF(self, line):
