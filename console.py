@@ -295,6 +295,7 @@ class HBNBCommand(cmd.Cmd):
         Returns:
             bool: True to exit the interpreter.
         """
+        print()
         return True
 
 
