@@ -279,7 +279,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """Do nothing when an empty line is entered."""
-        pass
+        return False
 
     def do_quit(self, arg):
         """Exit the interpreter."""
@@ -295,7 +295,6 @@ class HBNBCommand(cmd.Cmd):
         Returns:
             bool: True to exit the interpreter.
         """
-        print()
         return True
 
 
