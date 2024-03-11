@@ -20,22 +20,20 @@ class HBNBCommand(cmd.Cmd):
     Command line interpreter for HBNB project.
     """
     
-    prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''
+    prompt = '(hbnb) '
     
     def do_quit(self, arg):
         """Quit command to exit the program"""
         return True
 
-    def do_EOF(self, line):
+    def do_EOF(self, arg):
         """Exit the program"""
         print("")
         return True
     
     def emptyline(self):
-        if sys.__stdin__.isatty():
-            pass
-        else:
-            return True
+        """Does nothing on empty input."""
+        pass
 
     def precmd(self, line):
         """
